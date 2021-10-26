@@ -37,6 +37,11 @@ class Objet
      */
     private $Prix;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Categorie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Objet
     public function setPrix(float $Prix): self
     {
         $this->Prix = $Prix;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(string $Categorie): self
+    {
+        $this->Categorie = $Categorie;
 
         return $this;
     }
