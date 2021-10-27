@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<title>Objet</title>
+
+{% block body %}
+    <h1>Objet</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ objet.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ objet.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ objet.Description }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ objet.Marque }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ objet.Prix }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ objet.Categorie }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('objet_index') }}">back to list</a>
+
+    <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
+
+    {{ include('objet/_delete_form.html.twig') }}
+{% endblock %}

@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\ObjetRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +35,11 @@ class Objet
      * @ORM\Column(type="float")
      */
     private $Prix;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Categorie;
 
     public function getId(): ?int
     {
@@ -86,6 +90,18 @@ class Objet
     public function setPrix(float $Prix): self
     {
         $this->Prix = $Prix;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(string $Categorie): self
+    {
+        $this->Categorie = $Categorie;
 
         return $this;
     }
