@@ -3,9 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ObjetRepository;
 
 /**
- * @ORM\Entity(repositoryClass=ObjetRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\ObjetRepository")
  */
 class Objet
 {
