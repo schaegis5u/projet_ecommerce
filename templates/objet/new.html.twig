@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New Objet</title>
+
+{% block body %}
+    <h1>Create new Objet</h1>
+
+    {{ include('objet/_form.html.twig') }}
+
+    <a href="{{ path('objet_index') }}">back to list</a>
+{% endblock %}
