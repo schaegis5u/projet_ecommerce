@@ -95,7 +95,7 @@ class Image
      */
     public function getPublicRootDir(): string
     {
-        return __DIR__ . '/../../public/uploads/';
+        return __DIR__ . "../../../public/uploads/";
     }
 
     /**
@@ -104,9 +104,7 @@ class Image
      */
     public function generatePath(): void 
     {
-        // Si un fichier a été envoyé
         if ($this->file instanceof UploadedFile) {
-            // Génére un chemin de fichier
             $this->path = uniqid('img_').'.'.$this->file->guessExtension();
         }
     }
@@ -117,7 +115,6 @@ class Image
      */
     public function upload(): void
     {
-        // Supprimer l'ancien fichier
         if (is_file($this->getPublicRootDir().$this->oldPath)) {
             unlink($this->getPublicRootDir().$this->oldPath);
         }
@@ -132,13 +129,4 @@ class Image
         return '/uploads/'.$this->path;
     }
 
-    /**
-     * @ORM\PreRemove()
-     */
-    public function remove()
-    {
-        if (is_file($this->getPublicRootDir().$this->path)) {
-            unlink($this->getPublicRootDir().$this->path);
-        }
-    }
 }
