@@ -8,6 +8,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
@@ -20,6 +21,11 @@
         <tbody>
         {% for objet in objets %}
             <tr>
+                {% if objet.image is not empty %}
+                <td>
+                <img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;">
+                </td>
+                {% endif %}
                 <td>{{ objet.id }}</td>
                 <td>{{ objet.Nom }}</td>
                 <td>{{ objet.Description }}</td>
@@ -29,7 +35,7 @@
                 <td>
                     <a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
                     <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
-                </td>
+                </td>                
             </tr>
         {% else %}
             <tr>

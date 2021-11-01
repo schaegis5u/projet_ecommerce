@@ -44,27 +44,21 @@ class Objet
      */
     private $Categorie;
 
-    /**
-     * @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400,
-     *     allowLandscape = false,
-     *     allowPortrait = false
-     * )
-     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
-     */
-    protected $image;
-
-    public function setImage(File $file = null)
-    {
-        $this->image = $file;
-    }
-
-    public function getImage()
+    public function getImage(): ?Image
     {
         return $this->image;
+    }
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $image;
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
     public function getId(): ?int
