@@ -1,49 +1,22 @@
-<!DOCTYPE html>
-
-<title>Objet index</title>
-
+{% extends "base.html.twig" %}
 {% block body %}
     <h1>Objet index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Marque</th>
-                <th>Prix</th>
-                <th>Categorie</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for objet in objets %}
-            <tr>
-                {% if objet.image is not empty %}
-                <td>
-                <img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;">
-                </td>
-                {% endif %}
-                <td>{{ objet.id }}</td>
-                <td>{{ objet.Nom }}</td>
-                <td>{{ objet.Description }}</td>
-                <td>{{ objet.Marque }}</td>
-                <td>{{ objet.Prix }}</td>
-                <td>{{ objet.Categorie }}</td>
-                <td>
-                    <a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
-                    <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
-                </td>                
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
     <a href="{{ path('objet_new') }}">Create new</a>
+         <div class="container">
+            <div class="row">
+            {% for objet in objets %}
+                <div class="col">
+                    {% if objet.image is not empty %}
+                        <a href="{{ path('objet_show', {'id': objet.id}) }}"><img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;"/></a>
+                    {% endif %}
+                    <br/>
+                    {{ objet.id }} | <a href="{{ path('objet_show', {'id': objet.id}) }}"><b class="h5">{{ objet.Nom }}</b></a>
+                    <br/>
+                    {{ objet.Description }} <br/>
+                    <i>{{ objet.Marque }}</i> |  {{ objet.Categorie }}
+                    <h5 class="display-5">{{ objet.Prix }}€</h5>
+                    <a href="{{ path('objet_edit', {'id': objet.id}) }}">Edition [admin]</a>
+                </div>
+            {% endfor %}
+        </div>
 {% endblock %}
