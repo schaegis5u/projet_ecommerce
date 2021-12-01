@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <style>
+        p.solid {max-width: 300px; max-height:50px; overflow: hidden; text-overflow: ellipsis;}' 
+    </style>
+    <h1 style="text-align:center" >Objet index</h1><br>
+         <div class="container">
+            <div class="row">
+            {% for objet in objets %}
+                <div class="col">
+                    {% if objet.image is not empty %}
+                        <a href="{{ path('objet_show', {'id': objet.id}) }}"><img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;"/></a>
+                    {% endif %}
+                    <br/>
+                    <a href="{{ path('objet_show', {'id': objet.id}) }}"><b style="font-size:30px;">{{ objet.Nom }}</b></a>
+                    <p class='solid'>{{ objet.Description }}</p>
+                    Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {{ objet.Categorie }}
+                    <p>{{ objet.Prix }}€</p>
+                    <a href="{{ path('objet_edit', {'id': objet.id}) }}">Edition [admin]</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="bouton mt-5">
+            <a href="{{ path('objet_new') }}" class="btn btn-primary">Create new</a>
+        </div>
+       
+{% endblock %}

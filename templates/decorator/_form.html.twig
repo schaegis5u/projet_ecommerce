@@ -1,0 +1,17 @@
+{{ form_start(form) }} {# ouverture balise form #}
+
+    <div class="card">  
+        <div class="card-body"> 
+            {% block formBody %}
+                {{ form_widget(form) }} {# affiche les champs du formulaire #}  
+            {% endblock %}
+        </div>
+
+        <div class="card-footer">
+            {# button:submit.btn.btn-primary #}
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+
+    </div>
+
+{{ form_end(form) }} {# fermeture balise form #}

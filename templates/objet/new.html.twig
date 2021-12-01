@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <h1 style="text-align: center">Créer un nouvel objet</h1>
+
+    {% embed "decorator/_form.html.twig" %}
+    {% endembed %}
+
+    <a href="{{ path('objet_index') }}">back to list</a>
+
+   
+{% endblock %}
