@@ -1,3 +1,21 @@
-body {
-    background-color: lightgray;
+.darkmode_nav{
+    background-color:#272a2c;
+}
+
+.darkmode_container{
+    background-color:#E1E0E0
+}
+.darkmode_body{
+    background-color:#E1E0E0
+}
+
+.lightmode_nav{
+    background-color:#E5E4E4
+}
+
+.lightmode_container{
+    background-color:#EEEBEB
+}
+.lightmode_body{
+    background-color:#E1E0E0
 }

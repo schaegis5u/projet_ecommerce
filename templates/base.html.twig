@@ -13,7 +13,64 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
     {% endblock %}
 </head>
-<body style='background-color:#E1E0E0'>
+<body class="lightmode_body" id="body">
+<style>
+    .darkmode_nav{
+        background-color:#272a2c
+    }
+
+    .darkmode_container{
+        background-color:#222527
+    }
+    .darkmode_body{
+        background-color:#292d2e;
+        color:#d1cdc7
+
+    }
+
+    .lightmode_nav{
+        background-color:#E5E4E4
+    }
+
+    .lightmode_container{
+        background-color:#EEEBEB
+    }
+    .lightmode_body{
+        background-color:#E1E0E0;
+        color:black
+
+    }
+</style>
+<script>
+    let dark = false;
+    function switch_color()
+    {
+        if (dark)
+        {
+            dark = !dark;
+            document.getElementById('body').classList.remove("darktmode_body");
+            document.getElementById('body').classList.add("lightmode_body");
+            document.getElementById('nav').classList.remove("darktmode_nav");
+            document.getElementById('nav').classList.add("lightmode_nav");
+            document.getElementById('container').classList.remove("darktmode_container");
+            document.getElementById('container').classList.add("lightmode_container");
+            document.getElementById('but').classList.remove("darkmode_body");
+            document.getElementById('but').classList.add("lightmode_body");
+            
+        }
+        else{
+            dark = !dark;
+            document.getElementById('body').classList.remove("lightmode_body");
+            document.getElementById('body').classList.add("darkmode_body");
+            document.getElementById('nav').classList.remove("lightmode_nav");
+            document.getElementById('nav').classList.add("darkmode_nav");
+            document.getElementById('container').classList.remove("lightmode_container");
+            document.getElementById('container').classList.add("darkmode_container");
+            document.getElementById('but').classList.add("darkmode_body");
+            document.getElementById('but').classList.remove("lightmode_body");
+        }
+    }
+</script>
 {{ knp_menu_render('main', {'template': 'menu/_menu.html.twig', style: 'horizontal'}) }}
 
 

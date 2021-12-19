@@ -4,14 +4,17 @@
     <style>
         p.solid {max-width: 300px; max-height:50px; overflow: hidden; text-overflow: ellipsis;}' 
     </style>
-    <h1 style="text-align:center" >Trouvez votre bonheur...</h1><br>
-       <ul class="nav flex-column" style="float:left; margin-left:10px; margin:5px; width:20%; background-color:#E5E4E4; border-radius:2%">
+
+    <h1 style="text-align:center" >Trouvez votre bonheur...</h1> 
+    
+       <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:2px width:22%; border-radius:2%">
             <h6 class='nav-item'>Catégories</h6>
             {% for cat in categoryList %}
             <li class="nav-item"><a href="{{ path('categories_show', {'id': cat.id}) }}">{{cat.nom}}</a></li>
             {% endfor %}
+            <button onclick="switch_color()" class="lightmode_body" id="but" style="float:left; margin:5px; border-radius:5%;">THEME</button>
         </ul>
-         <div class="container" style="float:left; width:72%; background-color:#EEEBEB; margin:5px; padding:10px; border-radius:2%">
+         <div class="container lightmode_container" id="container" style="float:left; width:70%; margin:5px; padding:10px; border-radius:2%">
             <div class="row">
             {% for objet in objets %}
                 <div class="col-md-4">
