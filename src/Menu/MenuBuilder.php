@@ -27,11 +27,13 @@ class MenuBuilder
         $menu->addChild('Amazoom', ['route' => 'app']);
         $child = $menu->addChild('Produits', ['route' => 'objet_index']);
         if ($this->security->isGranted(('ROLE_USER'))) {
+            $child->addChild('Afficher', ['route' => 'objet_index']);
             $child->addChild('Ajouter', ['route' => 'objet_new']);
         }
     
         $child2 = $menu->addChild('Catégories', ['route' => 'categories_index']);
         if ($this->security->isGranted(('ROLE_ADMIN'))) {
+            $child2->addChild('Afficher', ['route' => 'categories_index']);
             $child2->addChild('Ajouter', ['route' => 'categories_new']);
         }
 
