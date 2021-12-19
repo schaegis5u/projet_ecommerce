@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ObjetRepository;
 use Symfony\Component\HttpFoundation\File\File;
@@ -39,10 +41,6 @@ class Objet
      */
     private $Prix;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Categorie;
 
     public function getImage(): ?Image
     {
@@ -53,6 +51,16 @@ class Objet
      * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $image;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="objets")
+     */
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function setImage(?Image $image): self
     {
@@ -114,15 +122,35 @@ class Objet
         return $this;
     }
 
-    public function getCategorie(): ?string
+    /**
+     * @return Collection|Categories[]
+     */
+    public function getCategories(): Collection
     {
-        return $this->Categorie;
+        return $this->categories;
     }
 
-    public function setCategorie(string $Categorie): self
+    public function addCategory(Categories $category): self
     {
-        $this->Categorie = $Categorie;
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addObjet($this);
+        }
 
         return $this;
+    }
+
+    public function removeCategory(Categories $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeObjet($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->Nom;
     }
 }

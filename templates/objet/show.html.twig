@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+{% extends "base.html.twig" %}
+{% block title %}{{objet.Nom}}{% endblock %}
 
-<title>Objet</title>
-
-{% block body %}
+{% block content %}
     <h1>Objet</h1>
 
     <table class="table">
@@ -29,7 +28,9 @@
             </tr>
             <tr>
                 <th>Categorie</th>
-                <td>{{ objet.Categorie }}</td>
+                {% for category in objet.categories %}
+                <td>{{category.nom}}</td>
+                {% endfor %}
             </tr>
         </tbody>
     </table>

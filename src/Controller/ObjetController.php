@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Objet;
 use App\Form\ObjetType;
+use App\Repository\CategoriesRepository;
 use App\Repository\ObjetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ObjetController extends AbstractController
 {
     #[Route('/', name: 'objet_index', methods: ['GET'])]
-    public function index(ObjetRepository $objetRepository): Response
+    public function index(ObjetRepository $objetRepository, CategoriesRepository $categoriesRepository): Response
     {
         return $this->render('objet/index.html.twig', [
             'objets' => $objetRepository->findAll(),
+            'categoryList' => $categoriesRepository->findAll(),
+
         ]);
     }
 

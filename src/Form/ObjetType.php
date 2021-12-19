@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Categories;
 use App\Entity\Objet;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +21,11 @@ class ObjetType extends AbstractType
             ->add('Description', null)
             ->add('Marque')
             ->add('Prix')
-            ->add('Categorie')
+            ->add('categories', EntityType::class, [
+                'class' => Categories::class,
+                'label' => 'Catégories de l\'objet',
+                'multiple' => true,
+            ])
             ->add('image', ImageType::class, [
                 'required' => false
             ])

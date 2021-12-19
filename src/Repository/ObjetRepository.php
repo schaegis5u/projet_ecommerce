@@ -27,8 +27,9 @@ class ObjetRepository extends ServiceEntityRepository
         ... 
         */
         $qb = $this->createQueryBuilder('o')
-            ->addSelect('i')
+            ->addSelect('i, c')
             ->leftJoin('o.image', 'i')
+            ->leftJoin('o.categories', 'c')
         ;
 
         return $qb->getQuery()->getResult();
