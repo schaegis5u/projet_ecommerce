@@ -1,6 +1,6 @@
-Projet Symfony CHIARI-RENARD-SCHAEGIS-DEMAZIERE
+<h3>Projet Symfony CHIARI-RENARD-SCHAEGIS-DEMAZIERE</h3>
 
-Pour récupérer le projet, dans votre dossier, faites "git init", "git pull https://github.com/schaegis5u/projet_ecommerce.git" pour récupérer les données. Vous pouvez utiliser Docker et faire : "docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306 -d docker.io/library/mariadb:10.3" pour créer une BDD Docker puis faire : "php bin/console doctrine:database:create" et "php bin/console doctrine:schema:update --force". N'oubliez pas de faire "composer install", "npm install --save-dev" et "npm run dev" pour récuperer les fichiers essentiels !
+<p>Pour récupérer le projet, dans votre dossier, faites : <b>git init</b>, <b>git pull <link>https://github.com/schaegis5u/projet_ecommerce.git</link></b> pour récupérer les données. <br/>Vous pouvez utiliser Docker et faire : <b>docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=<link>mypass</link> -p 3306:3306 -d docker.io/library/mariadb:10.3</b> pour créer une BDD Docker puis faire : <b>php bin/console doctrine:database:create</b> et <b>php bin/console doctrine:schema:update --force</b>. <br/>N'oubliez pas de faire <b>composer install</b>, <b>npm install --save-dev</b> et <b>npm run dev</b> pour récuperer les fichiers essentiels ! </p>
 
 TODO : Lier à une base de données [FAIT] - Réaliser les pages de création d'objets - [FAIT mais BASIQUE - AMELIORER] - Réaliser les pages lorsque l'on clique sur un objet (visualiser l'objet, pouvoir avoir des infos, l'acheter...) - [FAIT mais BASIQUE - AMELIORER] - Réaliser la gestion d'utilisateurs
 
