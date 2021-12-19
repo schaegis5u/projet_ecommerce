@@ -31,7 +31,7 @@ class Image
      * @var UploadedFile
      * 
      * @Assert\Image(
-     *  maxSize = "5M"
+     *  maxSize = "10"
      * )
      */
     private $file;

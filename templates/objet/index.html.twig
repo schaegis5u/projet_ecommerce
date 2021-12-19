@@ -7,7 +7,7 @@
          <div class="container">
             <div class="row">
             {% for objet in objets %}
-                <div class="col">
+                <div class="col-md-4">
                     {% if objet.image is not empty %}
                         <a href="{{ path('objet_show', {'id': objet.id}) }}"><img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;"/></a>
                     {% endif %}
@@ -19,6 +19,7 @@
                     <a href="{{ path('objet_edit', {'id': objet.id}) }}">Edition [admin]</a>
                 </div>
             {% endfor %}
+            </div>
         </div>
 
         <div class="bouton mt-5">
