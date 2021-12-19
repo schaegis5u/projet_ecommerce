@@ -13,8 +13,6 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('file')
-            ->add('name')
-
         ;
     }
 

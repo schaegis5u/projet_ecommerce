@@ -26,10 +26,6 @@ class Image
      */
     private $path;
 
-    /**
-     * @ORM\Column(type="string", length=80)
-     */
-    private $name;
 
     /**
      * @var UploadedFile
@@ -58,18 +54,6 @@ class Image
     public function setPath(string $path): self
     {
         $this->path = $path;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
 
         return $this;
     }
