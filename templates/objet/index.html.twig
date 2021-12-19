@@ -3,7 +3,7 @@
     <style>
         p.solid {max-width: 300px; max-height:50px; overflow: hidden; text-overflow: ellipsis;}' 
     </style>
-    <h1 style="text-align:center" >Objet index</h1><br>
+    <h1 style="text-align:center" >Trouvez votre bonheur...</h1><br>
          <div class="container">
             <div class="row">
             {% for objet in objets %}
@@ -16,7 +16,6 @@
                     <p class='solid'>{{ objet.Description }}</p>
                     Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {{ objet.Categorie }}
                     <p>{{ objet.Prix }}€</p>
-                    <a href="{{ path('objet_edit', {'id': objet.id}) }}">Edition [admin]</a>
                 </div>
             {% endfor %}
             </div>
