@@ -18,7 +18,7 @@
 
 {% block root %}
 {% set options = options|merge({'currentDepth': 0}) %}
-{% if options.style is defined and options.currentClass is defined and options.currentClass == 'current' %}
+{% if options.style is defined and options.currentClass is defined and options.currentClass == 'active' %}
     {% set options = options|merge({'currentClass': 'active'}) %}
     {% set options = options|merge({'ancestorClass': 'active'}) %}
 {% endif %}
@@ -54,7 +54,7 @@
             {% endif %}
         {% endif %}
 
-        {% set listClass =  listClass ~ ' nav' %}
+        {% set listClass =  ' nav' ~ ' bg-dark' %}
         {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 
         <ul{{ attributes(listAttributes) }}>
@@ -139,7 +139,7 @@
     {%- elseif item.hasChildren and options.style is defined and options.style in ['horizontal', 'horizontal-center', 'horizontal-right'] and ((item.extras.dropdown is not defined and item.displayChildren is same as (true) or item.extras.dropdown is defined and item.extras.dropdown is same as (true) and item.displayChildren is same as (true))) %}
         {%- set classes = classes|merge(['dropdown']) %}
     {%- endif %}
-    {% if options.currentDepth == 1 or options.style in ['vertical', 'vertical-pills'] %}
+    {% if options.currentDepth == 1 %}
         {%- set classes = classes|merge(['nav-item']) %}
     {% endif %}
 
@@ -176,7 +176,7 @@
 {% endblock %}
 
 {% block linkElement %}
-    {% if options.currentDepth > 1 and options.style in ['horizontal', 'horizontal-center', 'horizontal-right'] %}
+    {% if options.currentDepth > 1 %}
         {% set linkAttributes = item.linkAttributes|merge({'class': (linkAttributes.class|default('') ~ ' dropdown-item')}) %}
     {% else %}
         {% set linkAttributes = item.linkAttributes|merge({'class': (linkAttributes.class|default('') ~ ' nav-link')}) %}
@@ -202,7 +202,7 @@
 {% apply spaceless %}
     {% set labelAttributes = item.labelAttributes %}
     {% set labelAttributes = labelAttributes|merge({'class': (labelAttributes.class|default('') ~ ' nav-link dropdown-toggle collapsed')|trim}) %}
-    {% set labelAttributes = labelAttributes|merge({'data-toggle': 'dropdown'}) %}
+    {% set labelAttributes = labelAttributes|merge({'data-bs-toggle': 'dropdown'}) %}
     <a href="#"{{ attributes(labelAttributes) }}>{{ block('label') }} <b class="caret"></b></a>
 {% endapply %}
 {% endblock dropdownElement %}
