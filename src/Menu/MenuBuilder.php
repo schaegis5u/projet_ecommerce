@@ -31,10 +31,8 @@ class MenuBuilder
             $child->addChild('Ajouter', ['route' => 'objet_new']);
         }
     
-        $child2 = $menu->addChild('Catégories', ['route' => 'categories_index']);
         if ($this->security->isGranted(('ROLE_ADMIN'))) {
-            $child2->addChild('Afficher', ['route' => 'categories_index']);
-            $child2->addChild('Ajouter', ['route' => 'categories_new']);
+            $menu->addChild('Nouvelle catégorie', ['route' => 'categories_new']);
         }
 
         if ($this->security->isGranted(('ROLE_USER'))) {
@@ -49,6 +47,7 @@ class MenuBuilder
                     'class' => 'menu-register',
                 ]
             ]);
+            $child->addChild('Panier', ['route' => 'panier_show']);
         }
         else{
             $menu->addChild('Se connecter', ['route' => 'app_login']);

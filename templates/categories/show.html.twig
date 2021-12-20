@@ -27,6 +27,7 @@
                     <p class='solid'>{{ objet.Description }}</p>
                     Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {% for category in objet.categories %} {{category.nom}} {% endfor %}
                     <p>{{ objet.Prix }}€</p>
+                    <form action="{{ path('app_objet_add2cart', {'id': objet.id}) }}"><input type="submit" value="Ajouter au panier" /></form>         
                 </div>
             {% endfor %}
             </div>

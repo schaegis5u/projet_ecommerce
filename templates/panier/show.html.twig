@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <style>
+        p.solid {max-width: 300px; max-height:50px; overflow: hidden; text-overflow: ellipsis;}' 
+    </style>
+
+    <h1 style="text-align:center" >Votre bonheur :</h1> 
+    {% for objet in panier.objets %}
+         <div class="container lightmode_container" id="container" style="float:left; width:70%; margin:5px; padding:10px; border-radius:2%">
+            <div>
+                {% if objet.image is not empty %}
+                    <a style="float:left; margin-right:5px;" href="{{ path('objet_show', {'id': objet.id}) }}"><img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;"/></a>
+                {% endif %}
+                <a href="{{ path('objet_show', {'id': objet.id}) }}"><b style="font-size:30px;">{{ objet.Nom }}</b></a><br/>
+                Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {% for category in objet.categories %} {{category.nom}} {% endfor %}
+                <b>{{ objet.Prix }}€<b>
+                <form action="{{ path('app_objet_removecart', {'id': objet.id}) }}"><input type="submit" value="Retirer du panier" /></form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -57,6 +57,11 @@ class Objet
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Panier::class, mappedBy="objets")
+     */
+    private $panier;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -152,5 +157,17 @@ class Objet
     public function __toString()
     {
         return $this->Nom;
+    }
+
+    public function getPanier(): ?Panier
+    {
+        return $this->panier;
+    }
+
+    public function setPanier(?Panier $panier): self
+    {
+        $this->panier = $panier;
+
+        return $this;
     }
 }

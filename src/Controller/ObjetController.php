@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Objet;
+use App\Entity\Panier;
 use App\Form\ObjetType;
 use App\Repository\CategoriesRepository;
 use App\Repository\ObjetRepository;
+use App\Repository\PanierRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/objet')]
 class ObjetController extends AbstractController
@@ -82,4 +86,53 @@ class ObjetController extends AbstractController
 
         return $this->redirectToRoute('objet_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/{id}/panier", requirements={"id":"\d+"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function add2Cart(Objet $entity, PanierRepository $panierRepository, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $user = $this->getUser();
+        $panier = $panierRepository->findOne($user);
+
+        if (null === $panier)
+        {
+            $panier = (new Panier)
+                ->setUser($user)
+                ->addObjet($entity)
+            ;
+
+            $entityManager->persist($panier);
+
+        } else {
+        $panier->addObjet($entity);
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('objet_index');
+    }
+
+    /**
+     * @Route("/{id}/removepanier", requirements={"id":"\d+"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function removeCart(Objet $entity, PanierRepository $panierRepository, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $user = $this->getUser();
+        $panier = $panierRepository->findOne($user);
+
+        if (null === $panier)
+        {
+
+        } else {
+        $panier->removeObjet($entity);
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('panier_show');
+    }
 }
+
