@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Form\CategoriesType;
 use App\Repository\CategoriesRepository;
+use App\Repository\ObjetRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,10 +44,11 @@ class CategoriesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'categories_show', methods: ['GET'])]
-    public function show(Categories $category): Response
+    public function show(Categories $category, CategoriesRepository $categoriesRepository): Response
     {
         return $this->render('categories/show.html.twig', [
             'category' => $category,
+            'categoryList' => $categoriesRepository->findAll(),
         ]);
     }
 
@@ -78,4 +80,15 @@ class CategoriesController extends AbstractController
 
         return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/list', name: 'categories_list', methods: ['GET', 'POST'])]
+    public function list(CategoriesRepository $categoriesRepository, ObjetRepository $objetRepository): Response
+    {
+        return $this->render('objet/index.html.twig', [
+            'objets' => $objetRepository->findAllObjects(),
+            'categoryList' => $categoriesRepository->findAll(),
+
+        ]);
+    }
 }
+

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoriesRepository;
+use App\Repository\ObjetRepository;
+use App\Entity\Objet;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -79,5 +81,6 @@ class Categories
     {
         return $this->nom;
     }
+
 
 }

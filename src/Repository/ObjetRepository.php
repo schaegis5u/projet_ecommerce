@@ -21,11 +21,7 @@ class ObjetRepository extends ServiceEntityRepository
 
     public function findAll(): array 
     {
-        /*
-        SELECT g.*, i.*, u.*, s.* FROM game AS g
-        LEFT JOIN image AS i ON i.id = g.image_id
-        ... 
-        */
+       
         $qb = $this->createQueryBuilder('o')
             ->addSelect('i, c')
             ->leftJoin('o.image', 'i')
@@ -34,6 +30,7 @@ class ObjetRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
 
     // /**
     //  * @return Objet[] Returns an array of Objet objects

@@ -1,26 +1,34 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Categories{% endblock %}
+{% extends "base.html.twig" %}
 
 {% block content %}
-    <h1>Categories</h1>
+    <style>
+        p.solid {max-width: 300px; max-height:50px; overflow: hidden; text-overflow: ellipsis;}' 
+    </style>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ category.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('categories_index') }}">back to list</a>
-
-    <a href="{{ path('categories_edit', {'id': category.id}) }}">edit</a>
-
-    {{ include('categories/_delete_form.html.twig') }}
+    <h1 style="text-align:center" >Trouvez votre bonheur...</h1> 
+    
+       <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:2px width:22%; border-radius:2%">
+            <h6 class='nav-item'>Catégories</h6>
+            <li class="nav-item"><a href="{{ path('objet_index') }}">Toutes</a></li>
+            {% for cat in categoryList %}
+            <li class="nav-item"><a href="{{ path('categories_show', {'id': cat.id}) }}">{{cat.nom}}</a></li>
+            {% endfor %}
+            <button onclick="switch_color()" class="lightmode_body" id="but" style="float:left; margin:5px; border-radius:5%;">THEME</button>
+        </ul>
+         <div class="container lightmode_container" id="container" style="float:left; width:70%; margin:5px; padding:10px; border-radius:2%">
+            <div class="row">
+            {% for objet in category.objets %}
+                <div class="col-md-4">
+                    {% if objet.image is not empty %}
+                        <a href="{{ path('objet_show', {'id': objet.id}) }}"><img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;"/></a>
+                    {% endif %}
+                    <br/>
+                    <a href="{{ path('objet_show', {'id': objet.id}) }}"><b style="font-size:30px;">{{ objet.Nom }}</b></a>
+                    <p class='solid'>{{ objet.Description }}</p>
+                    Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {% for category in objet.categories %} {{category.nom}} {% endfor %}
+                    <p>{{ objet.Prix }}€</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>   
 {% endblock %}

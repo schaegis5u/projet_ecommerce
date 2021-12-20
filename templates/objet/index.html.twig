@@ -9,6 +9,7 @@
     
        <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:2px width:22%; border-radius:2%">
             <h6 class='nav-item'>Catégories</h6>
+            <li class="nav-item"><a href="{{ path('objet_index') }}">Toutes</a></li>
             {% for cat in categoryList %}
             <li class="nav-item"><a href="{{ path('categories_show', {'id': cat.id}) }}">{{cat.nom}}</a></li>
             {% endfor %}
