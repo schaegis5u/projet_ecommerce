@@ -6,7 +6,10 @@
     </style>
 
     <h1 style="text-align:center" >Votre bonheur :</h1> 
+    {% set prix = 0 %}
+    {% if panier != null %}
     {% for objet in panier.objets %}
+        {% set prix = prix + objet.Prix %}
          <div class="container lightmode_container" id="container" style="float:left; width:70%; margin:5px; padding:10px; border-radius:2%">
             <div>
                 {% if objet.image is not empty %}
@@ -17,10 +20,18 @@
                 <b>{{ objet.Prix }}€</b>
                 <form action="{{ path('app_objet_removecart', {'id': objet.id}) }}"><input type="submit" value="Retirer du panier" /></form>
             </div>
+
         </div>
     {% endfor %}
+    {% endif %}
 
-    <ul class="nav flex-column lightmode_nav" id="nav" style="float:right; margin:5px; padding:2px width:22%; border-radius:2%">
-        <button onclick="switch_color()" class="lightmode_body" id="but" style="float:left; margin:5px; border-radius:5%;">THEME</button>
+    {% if prix != 0 %}
+    <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:5px width:22%; border-radius:2%">
+        <h6 class="display-6"> Coût total : {{prix}}€ </h6>
+        <form action="{{ path('panier_pay') }}"><input style="float:left; margin:5px;" id="but" type="submit" value="Passer commande" /></form>
+        <button onclick="switch_color()" class="lightmode_body" id="but" style="; margin:5px; border-radius:5%; width:40%">THEME</button>
     </ul>
+    {% else %}
+    <h3 class="display-3">Panier vide !</h3>
+    {% endif %}
 {% endblock %}

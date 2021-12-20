@@ -20,12 +20,12 @@ class Panier
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="panier", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="panier", cascade={"persist"})
      */
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Objet::class, inversedBy="panier")
+     * @ORM\OneToMany(targetEntity=Objet::class, inversedBy="panier", orphanRemoval=true)
      */
     private $objets;
 
