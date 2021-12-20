@@ -13,10 +13,14 @@
                     <a style="float:left; margin-right:5px;" href="{{ path('objet_show', {'id': objet.id}) }}"><img src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 150px;"/></a>
                 {% endif %}
                 <a href="{{ path('objet_show', {'id': objet.id}) }}"><b style="font-size:30px;">{{ objet.Nom }}</b></a><br/>
-                Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {% for category in objet.categories %} {{category.nom}} {% endfor %}
-                <b>{{ objet.Prix }}€<b>
+                Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {% for category in objet.categories %} {{category.nom}} |{% endfor %}
+                <b>{{ objet.Prix }}€</b>
                 <form action="{{ path('app_objet_removecart', {'id': objet.id}) }}"><input type="submit" value="Retirer du panier" /></form>
             </div>
         </div>
     {% endfor %}
+
+    <ul class="nav flex-column lightmode_nav" id="nav" style="float:right; margin:5px; padding:2px width:22%; border-radius:2%">
+        <button onclick="switch_color()" class="lightmode_body" id="but" style="float:left; margin:5px; border-radius:5%;">THEME</button>
+    </ul>
 {% endblock %}
