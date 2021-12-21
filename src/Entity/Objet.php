@@ -62,6 +62,12 @@ class Objet
      */
     private $panier;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="objets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -167,6 +173,18 @@ class Objet
     public function setPanier(?Panier $panier): self
     {
         $this->panier = $panier;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

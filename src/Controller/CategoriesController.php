@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Security as CoreSecurity;
+
 
 #[Route('/categories')]
 class CategoriesController extends AbstractController
@@ -24,17 +27,22 @@ class CategoriesController extends AbstractController
     }
 
     #[Route('/new', name: 'categories_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, CoreSecurity $security): Response
     {
-        $category = new Categories();
-        $form = $this->createForm(CategoriesType::class, $category);
-        $form->handleRequest($request);
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $category = new Categories();
+            $form = $this->createForm(CategoriesType::class, $category);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($category);
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->persist($category);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
+        else{
+            return $this->redirectToRoute('categories_index');
         }
 
         return $this->renderForm('categories/new.html.twig', [
@@ -53,30 +61,39 @@ class CategoriesController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'categories_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Categories $category, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Categories $category, EntityManagerInterface $entityManager, CoreSecurity $security): Response
     {
-        $form = $this->createForm(CategoriesType::class, $category);
-        $form->handleRequest($request);
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $form = $this->createForm(CategoriesType::class, $category);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
 
-            return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
+        else{
+            return $this->redirectToRoute('categories_index');
         }
 
         return $this->renderForm('categories/edit.html.twig', [
             'category' => $category,
             'form' => $form,
-        ]);
+        ]);  
     }
 
     #[Route('/{id}', name: 'categories_delete', methods: ['POST'])]
-    public function delete(Request $request, Categories $category, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Categories $category, EntityManagerInterface $entityManager, CoreSecurity $security): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($category);
-            $entityManager->flush();
+
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+                $entityManager->remove($category);
+                $entityManager->flush();
+            }
         }
+
 
         return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
     }

@@ -23,6 +23,11 @@ class PanierController extends AbstractController
     public function show(PanierRepository $panierRepository, CoreSecurity $security, EntityManagerInterface $entityManager): Response
     {
         $user = $security->getUser();
+        if (null === $user)
+        {
+            return $this->redirectToRoute('objet_index');
+        }
+
         return $this->render('panier/show.html.twig', [
             'panier' => $panierRepository->findOne(($user)),
         ]);
@@ -32,6 +37,11 @@ class PanierController extends AbstractController
     public function pay(Request $request, PanierRepository $panierRepository, CoreSecurity $security, EntityManagerInterface $entityManager): Response
     {
         $user = $security->getUser();
+        if (null === $user)
+        {
+            return $this->redirectToRoute('objet_index');
+        }
+
         $panier = $panierRepository->findOne(($user));
 
         $paiement = new Paiement();

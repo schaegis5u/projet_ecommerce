@@ -31,11 +31,18 @@ class ObjetController extends AbstractController
     #[Route('/new', name: 'objet_new', methods: ['GET','POST'])]
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
+        if (null === $user)
+        {
+            return $this->redirectToRoute('objet_index');
+        }
+
         $objet = new Objet();
         $form = $this->createForm(ObjetType::class, $objet);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $objet->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($objet);
             $entityManager->flush();
@@ -60,6 +67,12 @@ class ObjetController extends AbstractController
     #[Route('/{id}/edit', name: 'objet_edit', methods: ['GET','POST'])]
     public function edit(Request $request, Objet $objet): Response
     {
+        $user = $this->getUser();
+        if ($objet->getUser() != $user)
+        {
+            return $this->redirectToRoute('objet_index');
+        }
+
         $form = $this->createForm(ObjetType::class, $objet);
         $form->handleRequest($request);
 
@@ -78,6 +91,12 @@ class ObjetController extends AbstractController
     #[Route('/{id}', name: 'objet_delete', methods: ['POST'])]
     public function delete(Request $request, Objet $objet): Response
     {
+        $user = $this->getUser();
+        if ($objet->getUser() != $user)
+        {
+            return $this->redirectToRoute('objet_index');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$objet->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($objet);
@@ -96,6 +115,10 @@ class ObjetController extends AbstractController
         $user = $this->getUser();
         $panier = $panierRepository->findOne($user);
 
+        if (null === $user)
+        {
+            return $this->redirectToRoute('objet_index');
+        }
         if (null === $panier)
         {
             $panier = (new Panier)
@@ -120,6 +143,12 @@ class ObjetController extends AbstractController
      */
     public function removeCart(Objet $entity, PanierRepository $panierRepository, EntityManagerInterface $entityManager, Request $request): Response
     {
+        $user = $this->getUser();
+        if (null === $user)
+        {
+            return $this->redirectToRoute('objet_index');
+        }
+        
         $user = $this->getUser();
         $panier = $panierRepository->findOne($user);
 
