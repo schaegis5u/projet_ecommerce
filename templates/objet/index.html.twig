@@ -6,6 +6,14 @@
     </style>
 
     <h1 style="text-align:center" >Trouvez votre bonheur...</h1> 
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form action="" method='GET'>
+                <div class="input-group mb-3">
+                    <input style="margin-left:10px" type="text" name="s" placeholder="Votre recherche" class="form-control" value = '{{ app.request.get("s", "") }}'>
+                    <button style="margin-left:10px" type="submit" class="btn btn-light">Rechercher</i></button>
+                </div>
+        </form>
+    </div>
     
        <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:2px width:22%; border-radius:2%">
             <h6 class='nav-item'>Catégories</h6>

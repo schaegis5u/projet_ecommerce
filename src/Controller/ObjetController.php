@@ -19,10 +19,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ObjetController extends AbstractController
 {
     #[Route('/', name: 'objet_index', methods: ['GET'])]
-    public function index(ObjetRepository $objetRepository, CategoriesRepository $categoriesRepository): Response
+    public function index(ObjetRepository $objetRepository, CategoriesRepository $categoriesRepository, Request $request): Response
     {
+        $search =$request->get('s', '');
+
         return $this->render('objet/index.html.twig', [
-            'objets' => $objetRepository->findAll(),
+            'objets' => $objetRepository->findSearch($search),
             'categoryList' => $categoriesRepository->findAll(),
 
         ]);

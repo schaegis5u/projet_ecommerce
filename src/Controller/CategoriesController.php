@@ -98,14 +98,5 @@ class CategoriesController extends AbstractController
         return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/list', name: 'categories_list', methods: ['GET', 'POST'])]
-    public function list(CategoriesRepository $categoriesRepository, ObjetRepository $objetRepository): Response
-    {
-        return $this->render('objet/index.html.twig', [
-            'objets' => $objetRepository->findAllObjects(),
-            'categoryList' => $categoriesRepository->findAll(),
-
-        ]);
-    }
 }
 

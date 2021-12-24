@@ -27,6 +27,22 @@ class ObjetRepository extends ServiceEntityRepository
             ->leftJoin('o.image', 'i')
             ->leftJoin('o.categories', 'c')
         ;
+        
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findSearch(string $search): array 
+    {
+       
+        $qb = $this->createQueryBuilder('o')
+            ->addSelect('i, c')
+            ->leftJoin('o.image', 'i')
+            ->leftJoin('o.categories', 'c')
+        ;
+        $qb->where('o.Nom LIKE :search')
+        ->setParameter(':search', '%'.$search.'%')
+        ;
 
         return $qb->getQuery()->getResult();
     }
