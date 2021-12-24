@@ -44,8 +44,8 @@
     <a class="btn btn-primary" style="width:250px" href="{{ path('app_objet_add2cart', {'id': objet.id}) }}">Ajouter au panier</a><br/>
     {% if app.user != null %}
         {% if objet.user == app.user %}
-                <span style='text-align:right;margin:10px'><a class="btn btn-dark" style="width:100px" href="{{ path('objet_edit', {'id': objet.id}) }}">EDITER</a>
-                <a class="btn btn-danger" style="width:120px" href="{{ path('objet_delete', {'id': objet.id}) }}">SUPPRIMER</a></span>
+                <span style='text-align:right'><a class="btn btn-dark" style="width:100px" href="{{ path('objet_edit', {'id': objet.id}) }}">EDITER</a>
+                {{ include('objet/_delete_form.html.twig') }}</span>
         {% endif %}
     {% endif %}
     </div>
