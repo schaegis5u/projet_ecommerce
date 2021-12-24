@@ -9,13 +9,13 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <form action="" method='GET'>
                 <div class="input-group mb-3">
-                    <input style="margin-left:10px" type="text" name="s" placeholder="Votre recherche" class="form-control" value = '{{ app.request.get("s", "") }}'>
-                    <button style="margin-left:10px" type="submit" class="btn btn-light">Rechercher</i></button>
+                    <input id="rech" style="margin-left:10px" type="text" name="s" placeholder="Votre recherche" class="form-control" value = '{{ app.request.get("s", "") }}'>
+                    <button id="rech" style="margin-left:10px" type="submit" class="btn btn-light">Rechercher</i></button>
                 </div>
         </form>
     </div>
     
-       <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:2px width:22%; border-radius:2%">
+       <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:2px width:auto; border-radius:2%">
             <h6 class='nav-item'>Catégories</h6>
             <li class="nav-item"><a href="{{ path('objet_index') }}">Toutes</a></li>
             {% for cat in categoryList %}
@@ -23,7 +23,7 @@
             {% endfor %}
             <button onclick="switch_color()" class="lightmode_body" id="but" style="float:left; margin:5px; border-radius:5%;">THEME</button>
         </ul>
-         <div class="container lightmode_container" id="container" style="float:left; width:70%; margin:5px; padding:10px; border-radius:2%">
+         <div class="nav flex-column  lightmode_container" id="container" style="width:auto; margin:5px; padding:10px; border-radius:2%; right:0px;">
             <div class="row">
             {% for objet in objets %}
                 <div class="col-md-4">

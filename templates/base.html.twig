@@ -25,7 +25,6 @@
     .darkmode_body{
         background-color:#292d2e;
         color:#d1cdc7
-
     }
 
     .lightmode_nav{
@@ -39,6 +38,14 @@
         background-color:#E1E0E0;
         color:black
 
+    }
+    .darkmode_rech{
+        background-color:#292d2e;
+        color:#d1cdc7
+    }
+    .lightmode_rech{
+        background-color:#f4f4f4;
+        color:black
     }
 </style>
 <script>
@@ -58,6 +65,8 @@
             document.querySelectorAll('#nav').forEach(e => e.classList.add("lightmode_nav"));
             document.querySelectorAll('#table').forEach(e => e.classList.remove("table-dark"));
             document.querySelectorAll('#table').forEach(e => e.classList.add("table-light"));            
+            document.querySelectorAll('#rech').forEach(e => e.classList.remove("darkmode_rech"));
+            document.querySelectorAll('#rech').forEach(e => e.classList.add("lightmode_rech"));
         }
         else{
             dark = !dark;
@@ -71,6 +80,8 @@
             document.querySelectorAll('#nav').forEach(e => e.classList.add("darkmode_nav"));
             document.querySelectorAll('#table').forEach(e => e.classList.add("table-dark"));
             document.querySelectorAll('#table').forEach(e => e.classList.remove("table-light")); 
+            document.querySelectorAll('#rech').forEach(e => e.classList.add("darkmode_rech"));
+            document.querySelectorAll('#rech').forEach(e => e.classList.remove("lightmode_rech"));
         }
     }
 </script>
