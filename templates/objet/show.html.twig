@@ -2,42 +2,51 @@
 {% block title %}{{objet.Nom}}{% endblock %}
 
 {% block content %}
-    <h1>Objet</h1>
+    <div class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:2px width:auto; border-radius:2%">
+        {% for category in objet.categories %}
+            <span><a href="{{ path('objet_index') }}">Tout</a> > <a href="{{ path('categories_show', {'id': category.id}) }}">{{category.nom}} </a> </span>
+        {% endfor %}
+        <button onclick="switch_color()" class="lightmode_body" id="but" style="float:left; margin:5px; border-radius:5%; width:100px">THEME</button>
+         {% if objet.image is not empty %}
+            <a href="{{ path('objet_show', {'id': objet.id}) }}"><img class="img-fluid" src="{{ asset(objet.image.webPath) }}" alt="{{ objet.Nom }}" style="max-width: 500px; max-height:700px"/></a>
+         {% endif %}
+    </div>
+    <div class="nav flex-column lightmode_nav" id="nav" style="margin:5px; padding:2px width:auto; border-radius:2%; position:abbsolute; right:0px;">
+        <h2 class="display-3 text-center"> {{objet.Nom}} </h2>
+        <br/><br/><br/>
+        <p class="display-6"> Prix : <b>{{objet.Prix}}€</b> </p>
+        <blockquote class="blockquote text-center">
+        <p class="mb-0">{{ objet.Description }}</p>
+        </blockquote>
 
-    <table class="table">
+        <table id="table" class="table table-light table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ objet.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ objet.Nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ objet.Description }}</td>
+                <th><h6 class="display-6">Informations sur l'objet :</h6></th>
             </tr>
             <tr>
                 <th>Marque</th>
                 <td>{{ objet.Marque }}</td>
             </tr>
             <tr>
-                <th>Prix</th>
-                <td>{{ objet.Prix }}</td>
-            </tr>
             <tr>
                 <th>Categorie</th>
-                {% for category in objet.categories %}
-                <td>{{category.nom}}</td>
-                {% endfor %}
+                <td>
+                    {% for category in objet.categories %}
+                        {{category.nom}} <br/>
+                    {% endfor %}
+                </td>
+                
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('objet_index') }}">back to list</a>
-
-    <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
-
-    {{ include('objet/_delete_form.html.twig') }}
+    <a class="btn btn-primary" style="width:250px" href="{{ path('app_objet_add2cart', {'id': objet.id}) }}">Ajouter au panier</a><br/>
+    {% if app.user != null %}
+        {% if objet.user == app.user %}
+                <span style='text-align:right;margin:10px'><a class="btn btn-dark" style="width:100px" href="{{ path('objet_edit', {'id': objet.id}) }}">EDITER</a>
+                <a class="btn btn-danger" style="width:120px" href="{{ path('objet_delete', {'id': objet.id}) }}">SUPPRIMER</a></span>
+        {% endif %}
+    {% endif %}
+    </div>
 {% endblock %}

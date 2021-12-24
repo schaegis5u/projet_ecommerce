@@ -18,7 +18,8 @@
                 <a href="{{ path('objet_show', {'id': objet.id}) }}"><b style="font-size:30px;">{{ objet.Nom }}</b></a><br/>
                 Marque : <i>{{ objet.Marque }}</i> |  Catégorie : {% for category in objet.categories %} {{category.nom}} |{% endfor %}
                 <b>{{ objet.Prix }}€</b>
-                <form action="{{ path('app_objet_removecart', {'id': objet.id}) }}"><input type="submit" value="Retirer du panier" /></form>
+                <br/>
+                <a class="btn btn-danger" style="width:150px" href="{{ path('app_objet_removecart', {'id': objet.id}) }}">Retirer du panier</a></span>
             </div>
 
         </div>
@@ -27,8 +28,8 @@
 
     {% if prix != 0 %}
     <ul class="nav flex-column lightmode_nav" id="nav" style="float:left; margin:5px; padding:5px width:22%; border-radius:2%">
-        <h6 class="display-6"> Coût total : {{prix}}€ </h6>
-        <form action="{{ path('panier_pay') }}"><input style="float:left; margin:5px;" id="but" type="submit" value="Passer commande" /></form>
+        <h6 class="display-6"> Coût total : {{prix}}€ </h6><br/>
+        <a class="btn btn-success" style="width:180px" href="{{ path('panier_pay') }}">Passer commande</a></span>
         <button onclick="switch_color()" class="lightmode_body" id="but" style="; margin:5px; border-radius:5%; width:40%">THEME</button>
     </ul>
     {% else %}

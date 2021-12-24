@@ -38,6 +38,14 @@ CREATE TABLE `image` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `image` (`id`, `path`) VALUES
+(2,	'img_61c5d23fa7017.jpg'),
+(3,	'img_61c5d594af949.png'),
+(4,	'img_61c5d700b8c89.jpg'),
+(5,	'img_61c5d737bf023.png'),
+(6,	'img_61c5d753e487d.jpg'),
+(7,	'img_61c5d76e4e86f.jpg'),
+(8,	'img_61c5d7cf38760.jpg');
 
 DROP TABLE IF EXISTS `objet`;
 CREATE TABLE `objet` (
@@ -59,13 +67,13 @@ CREATE TABLE `objet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `objet` (`id`, `image_id`, `panier_id`, `user_id`, `nom`, `description`, `marque`, `prix`) VALUES
-(2,	NULL,	NULL,	2,	'Cheval',	'Un cheval, un vrai !',	'Findus',	14.99),
-(3,	NULL,	NULL,	2,	'LOTR : Le Retour du Roi',	'Un livre, un vrai',	'Tolkiel',	15.99),
-(4,	NULL,	NULL,	2,	'Pokémon Platine',	'Un bon jeu !',	'Nintendo',	45),
-(5,	NULL,	NULL,	2,	'Pokémon Diamant Étincelant',	'Un jeu pas ouf, Platine > DP',	'Nintendo',	60),
-(6,	NULL,	NULL,	2,	'T-shirt trop court',	'Un t-shirt, jamais à votre taille',	'JeFéDHabi',	12.5),
-(7,	NULL,	NULL,	2,	'Bâton rose plastique',	'50cm de bonheur',	'Fun&Play',	60),
-(8,	NULL,	NULL,	2,	'Cube magique',	'Un cube. Il exauce les voeux',	'Rubik\'s Cube',	30);
+(2,	2,	NULL,	2,	'Cheval',	'Un cheval, un vrai !',	'Findus',	14.99),
+(3,	4,	NULL,	2,	'LOTR : Le Retour du Roi',	'Un livre, un vrai',	'Tolkien',	15.99),
+(4,	6,	NULL,	2,	'Pokémon Platine',	'Un bon jeu !',	'Nintendo',	45),
+(5,	3,	NULL,	2,	'Pokémon Diamant Étincelant',	'Un jeu pas ouf, Platine > DP',	'Nintendo',	60),
+(6,	5,	NULL,	2,	'T-shirt trop court',	'Un t-shirt, jamais à votre taille',	'JeFéDHabi',	12.5),
+(7,	8,	NULL,	2,	'Bâton rose plastique (Photo non contractuelle)',	'50cm de bonheur',	'Fun&Play',	60),
+(8,	7,	NULL,	2,	'Cube magique',	'Un cube. Il exauce les voeux',	'Rubik\'s Cube',	30);
 
 DROP TABLE IF EXISTS `objet_categories`;
 CREATE TABLE `objet_categories` (
@@ -110,6 +118,8 @@ CREATE TABLE `panier` (
   CONSTRAINT `FK_24CC0DF2A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `panier` (`id`, `user_id`) VALUES
+(2,	2);
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -125,4 +135,4 @@ INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
 (1,	'Roger',	'[]',	'$2y$13$pUbVY/eQUQyb6/SuLfml..HXMSE16GCLuLmkzq8Sf0avT7lq3b.5K'),
 (2,	'Roger2',	'[\"ROLE_ADMIN\"]',	'$2y$13$hL6Ab4kFIv4EgpuvAp3f8eHnwNKVr2GdbVEI1.S4wKX7OsH6rS5SG');
 
--- 2021-12-23 17:54:16
+-- 2021-12-24 15:13:22

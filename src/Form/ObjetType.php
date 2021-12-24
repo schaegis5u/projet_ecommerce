@@ -38,7 +38,7 @@ class ObjetType extends AbstractType
                     'multiple' => true,
                 ])
                 ->add('image', ImageType::class, [
-                    'required' => false
+                    'required' => false,
                 ])
             ;
         }

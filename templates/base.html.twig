@@ -56,7 +56,8 @@
             document.querySelectorAll('#but').forEach(e => e.classList.add("lightmode_body"));
             document.querySelectorAll('#nav').forEach(e => e.classList.remove("darktmode_nav"));
             document.querySelectorAll('#nav').forEach(e => e.classList.add("lightmode_nav"));
-            
+            document.querySelectorAll('#table').forEach(e => e.classList.remove("table-dark"));
+            document.querySelectorAll('#table').forEach(e => e.classList.add("table-light"));            
         }
         else{
             dark = !dark;
@@ -68,6 +69,8 @@
             document.querySelectorAll('#but').forEach(e => e.classList.remove("lightmode_body"));
             document.querySelectorAll('#nav').forEach(e => e.classList.remove("lightmode_nav"));
             document.querySelectorAll('#nav').forEach(e => e.classList.add("darkmode_nav"));
+            document.querySelectorAll('#table').forEach(e => e.classList.add("table-dark"));
+            document.querySelectorAll('#table').forEach(e => e.classList.remove("table-light")); 
         }
     }
 </script>
