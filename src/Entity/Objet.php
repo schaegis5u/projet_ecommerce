@@ -58,7 +58,7 @@ class Objet
     private $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Panier::class, mappedBy="objets")
+     * @ORM\ManyToOne(targetEntity=Panier::class, inversedBy="objets")
      */
     private $panier;
 

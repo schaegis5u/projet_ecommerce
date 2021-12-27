@@ -25,7 +25,7 @@ class Panier
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Objet::class, inversedBy="panier", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Objet::class, mappedBy="panier", orphanRemoval=true)
      */
     private $objets;
 
