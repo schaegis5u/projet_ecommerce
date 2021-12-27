@@ -1,9 +1,10 @@
 {% extends "base.html.twig" %}
+
 {% block content %}
-    <h1>Payer</h1>
+    <h1 style="text-align: center">Payer</h1>
 
     {{ include('panier/_form.html.twig') }}
 
-    <a href="{{ path('objet_index') }}">back to list</a>
+    <a href="{{ path('objet_index') }}" class="btn btn-secondary">Retour</a>
 
 {% endblock %}

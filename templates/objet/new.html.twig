@@ -1,4 +1,5 @@
 {% extends "base.html.twig" %}
+
 {% block title %}New Object{% endblock %}
 
 {% block content %}
@@ -7,7 +8,7 @@
     {% embed "decorator/_form.html.twig" %}
     {% endembed %}
 
-    <a href="{{ path('objet_index') }}">back to list</a>
+    <a href="{{ path('objet_index') }}" class="btn btn-secondary">Retour</a>
 
    
 {% endblock %}

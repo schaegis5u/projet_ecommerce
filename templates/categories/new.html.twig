@@ -3,9 +3,9 @@
 {% block title %}New Categories{% endblock %}
 
 {% block content %}
-    <h1>Create new Categories</h1>
+    <h1 style="text-align: center">Créer une nouvelle catégorie</h1>
 
     {{ include('categories/_form.html.twig') }}
 
-    <a href="{{ path('categories_index') }}">back to list</a>
+    <a href="{{ path('categories_index') }}" class="btn btn-secondary">Retour</a>
 {% endblock %}

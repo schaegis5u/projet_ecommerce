@@ -1,10 +1,11 @@
 {% extends "base.html.twig" %}
+
 {% block content %}
-    <h1>Edit Objet</h1>
+    <h1 style="text-align : center">Editer un objet</h1><br>
+    
+    {{ include('objet/_form.html.twig', {'button_label': 'Editer'}) }}
 
-    {{ include('objet/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('objet_index') }}">back to list</a>
-
+    <a href="{{ path('objet_index') }}" class="btn btn-secondary" class="btn btn-secondary">Retour</a>
     {{ include('objet/_delete_form.html.twig') }}
+    
 {% endblock %}

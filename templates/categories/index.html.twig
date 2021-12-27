@@ -3,7 +3,8 @@
 {% block title %}Categories index{% endblock %}
 
 {% block content %}
-    <h1>Categories index</h1>
+    <h1 style="text-align: center">Catégories</h1>
+    <a href="{{ path('categories_new') }}" class="btn btn-primary">Créer une catégorie</a>
     <table class="table">
         <thead>
             <tr>
@@ -18,8 +19,8 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.nom }}</td>
                 <td>
-                    <a href="{{ path('categories_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('categories_edit', {'id': category.id}) }}">edit</a>
+                    <a href="{{ path('categories_show', {'id': category.id}) }}" class="btn btn-sm btn-warning">show</a>
+                    <a href="{{ path('categories_edit', {'id': category.id}) }}" class="btn btn-sm btn-primary">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -30,5 +31,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('categories_new') }}">Create new</a>
 {% endblock %}
